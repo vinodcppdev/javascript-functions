@@ -37,13 +37,13 @@ function corners(state = []) {
     if (cell[0] > maxX) {
       maxX = cell[0];
     }
-    else if (cell[0] < minX) {
+    if (cell[0] < minX) {
       minX = cell[0];
     }
     if (cell[1] > maxY) {
       maxY = cell[1];
     }
-    else if (cell[1] < minY) {
+    if (cell[1] < minY) {
       minY = cell[1];
     }
   }
@@ -62,7 +62,19 @@ function corners(state = []) {
 
 }
 
-const printCells = (state) => { };
+const printCells = (state) => {
+  let rectCorners = corners(state);
+  //console.log(rectCorners);
+  let retVal = '';
+  for (let y = rectCorners.topRight[1]; y >= rectCorners.bottomLeft[1]; --y) {
+    for (let x = rectCorners.bottomLeft[0]; x <= rectCorners.topRight[0]; ++x) {
+      retVal += printCell([x, y], state);
+      retVal += ' ';
+    }
+    retVal += '\n';
+  }
+  return retVal;
+};
 
 const getNeighborsOf = ([x, y]) => { };
 
