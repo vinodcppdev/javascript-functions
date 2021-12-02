@@ -76,7 +76,23 @@ const printCells = (state) => {
   return retVal;
 };
 
-const getNeighborsOf = ([x, y]) => { };
+const getNeighborsOf = ([x, y]) => {
+  let startX = x === 1 ? 1 : x - 1;
+  let startY = y === 1 ? 1 : y - 1;
+  let ret = [];
+  //console.log(x)
+  //console.log(y)
+  for (let i = 0; i < 3; ++i) {
+    for (let j = 0; j < 3; ++j) {
+      if (!(startX + j === x && startY + i === y)) {
+        ret.push([startX + j, startY + i]);
+      }
+    }
+  }
+  //console.log(ret);
+  return ret;
+
+};
 
 const getLivingNeighbors = (cell, state) => { };
 
